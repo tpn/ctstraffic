@@ -437,8 +437,8 @@ namespace ctsTraffic {
     inline
     void ctsAcceptEx::ctsListenSocketInfo::RestartStalledAccepts(std::shared_ptr<ctsAcceptEx::ctsAcceptExImpl> _pimpl)
     {
-        for (auto& socket : accept_sockets) {
-            socket->InitatiateAcceptEx(_pimpl);
+        for (auto& accept_socket : accept_sockets) {
+            accept_socket->InitatiateAcceptEx(_pimpl);
         }
     }
 

@@ -689,10 +689,10 @@ namespace ctl {
     inline
     bool ctSockaddr::writeCompleteAddress(__out std::string& sReturn, __in bool trim_scope) const
     {
-        CHAR address[64];
+        WCHAR address[64];
         DWORD addressLength = 64;
 
-        if (0 == ::WSAAddressToStringA(
+        if (0 == ::WSAAddressToString(
             this->sockaddr(),
             saddr_size(),
             nullptr,
@@ -700,10 +700,10 @@ namespace ctl {
             &addressLength
             )) {
             if ((this->family() == AF_INET6) && trim_scope) {
-                CHAR* end = address + addressLength;
-                CHAR* scope_ptr = std::find(address, end, '%');
+                WCHAR* end = address + addressLength;
+                WCHAR* scope_ptr = std::find(address, end, '%');
                 if (scope_ptr != end) {
-                    CHAR* move_ptr = std::find(address, end, ']');
+                    WCHAR* move_ptr = std::find(address, end, ']');
                     if (move_ptr != end) {
                         while (move_ptr != end) {
                             *scope_ptr = *move_ptr;
