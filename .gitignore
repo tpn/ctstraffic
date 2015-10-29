@@ -1,2 +1,5 @@
 */*.aps
 */*.suo
+*.sdf
+*.opensdf
+x64
